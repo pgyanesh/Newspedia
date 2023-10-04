@@ -94,16 +94,12 @@ export default class News extends Component {
     <div className="container my-3">
       <div className="row my-3">
         <h3>Newspedia - Top Headlines</h3>
+        {this.state.articles.map((Element)=>{ 
+            return <div className='col-md-4' key={Element.url} >
+            <NewsItem title = {Element.title.slice(0, 40)} description= {Element.description.slice(0, 88)} imageUrl= {Element.urlToImage}  newsUrl={Element.url}/>
+        </div>
+        })}        
         
-        <div className='col-md-4'>
-            <NewsItem title = "Mytitle" description= "Mydescription" imageUrl= "https://cdn.24.co.za/files/Cms/General/d/3995/1f284a8e03ab41c4b8f7ce49ae6b60c1.jpg"  newsUrl="Todo"/>
-        </div>
-        <div className='col-md-4'>
-            <NewsItem title = "Mytitle" description= "Mydescription"/>
-        </div>
-        <div className='col-md-4'>
-            <NewsItem title = "Mytitle" description= "Mydescription"/>
-        </div>
         </div>
         </div>
 
