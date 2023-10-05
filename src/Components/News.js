@@ -88,6 +88,13 @@ export default class News extends Component {
         articles : this.articles,
         loading : false
     }}
+
+    async componentDidMount(){
+        let url = "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=3a31e56bda25411088adec10d27b3129"
+        let data = await fetch(url);
+        let parseddata = await data.json();
+        this.setState({articles : parseddata.articles })
+    }
   render() {
     return (
         
@@ -96,7 +103,7 @@ export default class News extends Component {
         <h3>Newspedia - Top Headlines</h3>
         {this.state.articles.map((Element)=>{ 
             return <div className='col-md-4' key={Element.url} >
-            <NewsItem title = {Element.title.slice(0, 40)} description= {Element.description.slice(0, 88)} imageUrl= {Element.urlToImage}  newsUrl={Element.url}/>
+            <NewsItem title = {Element.title?Element.title.slice(0, 40):""} description= {Element.description?Element.description.slice(0, 88):""} imageUrl= {Element.urlToImage}  newsUrl={Element.url}/>
         </div>
         })}        
         
