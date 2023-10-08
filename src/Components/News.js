@@ -11,7 +11,7 @@ export default class News extends Component {
        category : 'general',
     }
     static propTypes ={
-        country : PropTypes.array,
+        country : PropTypes.string,
         pageSize : PropTypes.number,
         category : PropTypes.string, 
     } 
@@ -49,7 +49,6 @@ export default class News extends Component {
         })
     }
     handleNextkey=async()=>{
-        console.log("Next")
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3a31e56bda25411088adec10d27b3129&page=${this.state.page+1}&pageSize=${this.props.pageSize}`
         this.setState({loading:true})
         let data = await fetch(url);
