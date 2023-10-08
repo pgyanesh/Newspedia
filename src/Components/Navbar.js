@@ -17,15 +17,13 @@ export class Navbar extends Component {
         <li className="nav-item">
             <a className="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        
-        <li className="nav-item"><a className="nav-link" href="/about">About</a></li>
-        <li className="nav-item"><a className="nav-link" href="/about">Business</a></li>
-        <li className="nav-item"><a className="nav-link" href="/about">Entertainment</a></li>
-        <li className="nav-item"><a className="nav-link" href="/about">General</a></li>
-        <li className="nav-item"> <a className="nav-link" href="/about">Health</a></li>
-        <li className="nav-item"> <a className="nav-link" href="/about">Science</a></li>
-        <li className="nav-item"><a className="nav-link" href="/about">Sports</a></li>
-        <li className="nav-item"> <a className="nav-link" href="/about">Technology</a></li>
+        <li className="nav-item"><a className="nav-link" href="/buisness">Business</a></li>
+        <li className="nav-item"><a className="nav-link" href="/entertainment">Entertainment</a></li>
+        <li className="nav-item"><a className="nav-link" href="/general">General</a></li>
+        <li className="nav-item"> <a className="nav-link" href="/health">Health</a></li>
+        <li className="nav-item"> <a className="nav-link" href="/science">Science</a></li>
+        <li className="nav-item"><a className="nav-link" href="/sports">Sports</a></li>
+        <li className="nav-item"> <a className="nav-link" href="/technology">Technology</a></li>
             
             
 
