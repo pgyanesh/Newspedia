@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
 import PropTypes from 'prop-types'
-//import {Routes} from "react-router-dom";
+//import {Routes} from "react-router-dom"
+import replacement from './replacement.jpg'
 
 
 
@@ -26,7 +27,7 @@ export default class News extends Component {
         page:1
     }}
 
-    async componentDidMount(){
+    async updateNews(){
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3a31e56bda25411088adec10d27b3129&pageSize=${this.props.pageSize}`
         this.setState({loading:true})
         let data = await fetch(url);
@@ -35,31 +36,24 @@ export default class News extends Component {
              totalResults : parseddata.totalResults,
              loading:false
             })
+        
+    }
+
+    async componentDidMount(){
+       this.updateNews();
     }
 
     handlePrevkey=async()=>{
-        console.log("Prev")
-        
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3a31e56bda25411088adec10d27b3129&page=${this.state.page-1}&pageSize=${this.props.pageSize}`
-        this.setState({loading:true})
-        let data = await fetch(url);
-        let parseddata = await data.json()
         this.setState({
-            page : this.state.page-1,
-            articles : parseddata.articles,
-            loading : false
+            page : this.state.page-1
         })
-    }
+            this.updateNews()
+        }
     handleNextkey=async()=>{
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3a31e56bda25411088adec10d27b3129&page=${this.state.page+1}&pageSize=${this.props.pageSize}`
-        this.setState({loading:true})
-        let data = await fetch(url);
-        let parseddata = await data.json()
         this.setState({
             page : this.state.page+1,
-            articles : parseddata.articles,
-            loading : false
         })
+        this.updateNews()
 
 }
 
@@ -74,7 +68,7 @@ export default class News extends Component {
         {this.state.loading && <Spinner/>}
         {!this.state.loading && this.state.articles.map((Element)=>{ 
             return <div className='col-md-4' key={Element.url} >
-            <NewsItem title = {Element.title?Element.title.slice(0, 40):""} description= {Element.description?Element.description.slice(0, 88):""} imageUrl= {Element.urlToImage}  newsUrl={Element.url} date={Element.publishedAt}/>
+            <NewsItem title = {Element.title?Element.title.slice(0, 40):""} description= {Element.description?Element.description.slice(0, 88):""} imageUrl= {!Element.urlToImage?Element.urlToImage:replacement}  newsUrl={Element.url} date={Element.publishedAt}/>
         </div>
      
         
