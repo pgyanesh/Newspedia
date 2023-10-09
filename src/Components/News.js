@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
 import PropTypes from 'prop-types'
+//import {Routes} from "react-router-dom";
+
 
 
 export default class News extends Component {
@@ -72,7 +74,7 @@ export default class News extends Component {
         {this.state.loading && <Spinner/>}
         {!this.state.loading && this.state.articles.map((Element)=>{ 
             return <div className='col-md-4' key={Element.url} >
-            <NewsItem title = {Element.title?Element.title.slice(0, 40):""} description= {Element.description?Element.description.slice(0, 88):""} imageUrl= {Element.urlToImage}  newsUrl={Element.url}/>
+            <NewsItem title = {Element.title?Element.title.slice(0, 40):""} description= {Element.description?Element.description.slice(0, 88):""} imageUrl= {Element.urlToImage}  newsUrl={Element.url} date={Element.publishedAt}/>
         </div>
      
         
