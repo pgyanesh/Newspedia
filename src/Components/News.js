@@ -35,7 +35,8 @@ export default class News extends Component {
         }
 
     async updateNews(){
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3a31e56bda25411088adec10d27b3129&pageSize=${this.props.pageSize}`
+        this.props.setProgress(10)
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3a31e56bda25411088adec10d27b3129`
         this.setState({loading:true})
         let data = await fetch(url);
         let parseddata = await data.json()
@@ -43,6 +44,7 @@ export default class News extends Component {
              totalResults : parseddata.totalResults,
              loading:false
             })
+            this.props.setProgress(100)
         
     }
 
@@ -54,7 +56,7 @@ export default class News extends Component {
         this.setState({
             page: this.state.page + 1
         })
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3a31e56bda25411088adec10d27b3129&pageSize=${this.props.pageSize}`
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3a31e56bda25411088adec10d27b3129`
         this.setState({loading:true})
         let data = await fetch(url);
         let parseddata = await data.json()
@@ -83,7 +85,7 @@ export default class News extends Component {
         >
             <div className="row my-3">
         {this.state.articles.map((Element)=>{ 
-            return <div className='col-md-4' key={Element.title} >
+            return <div className='col-md-4' key={Element.publishedAt} >
             <NewsItem title = {Element.title?Element.title.slice(0, 40):""} description= {Element.description?Element.description.slice(0, 88):""} imageUrl= {Element.urlToImage?Element.urlToImage:replacement}  newsUrl={Element.url} date={Element.publishedAt}/>
         </div>
         
