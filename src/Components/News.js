@@ -44,8 +44,9 @@ const News =(props)=> {
     
 
     const fetchMoreData = async(props) => {
-        setPage(page+1)
-        let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}`
+        
+        let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}`
+       setPage(page+1)
         setLoading(true)
         let data = await fetch(url);
         let parseddata = await data.json()
@@ -63,7 +64,7 @@ const News =(props)=> {
         
     <div className="container my-3">
       
-        <h1 className="text-center" style={{margin : '40px'}}>Newspedia - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+        <h1 className="text-center" style={{margin : '40px', marginTop:'90px'}}>Newspedia - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
         
         <InfiniteScroll
           dataLength={articles.length}
