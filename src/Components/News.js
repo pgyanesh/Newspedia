@@ -16,7 +16,7 @@ const News =(props)=> {
   const[totalResults, setTotalResults] = useState(0)
  
   
-//   document.title=`Newspedia - ${capitalizeFirstLetter(props.category)}`
+  
 
 
 
@@ -39,6 +39,7 @@ const News =(props)=> {
         
     }
     useEffect(()=>{
+        document.title=`Newspedia - ${capitalizeFirstLetter(props.category)}`
         updateNews();
     },[])
     
